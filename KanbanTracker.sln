@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KanbanTracker.Domain", "KanbanTracker.Domain\KanbanTracker.Domain.csproj", "{AB56D71A-C464-4E56-BC17-1FFBCA54A0A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KanbanTracker.Application", "KanbanTracker.Application\KanbanTracker.Application.csproj", "{6AF90D94-FA96-4A2A-9E9D-BCD3A6E2B3B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KanbanTracker.UI", "KanbanTracker.UI\KanbanTracker.UI.csproj", "{74B7D655-54A5-4659-A9F8-C25D0F58201F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KanbanTracker.Tests", "KanbanTracker.Tests\KanbanTracker.Tests.csproj", "{CD62D34E-658B-4BEC-AB67-AFCF858D9322}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB56D71A-C464-4E56-BC17-1FFBCA54A0A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB56D71A-C464-4E56-BC17-1FFBCA54A0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB56D71A-C464-4E56-BC17-1FFBCA54A0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB56D71A-C464-4E56-BC17-1FFBCA54A0A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AF90D94-FA96-4A2A-9E9D-BCD3A6E2B3B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AF90D94-FA96-4A2A-9E9D-BCD3A6E2B3B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AF90D94-FA96-4A2A-9E9D-BCD3A6E2B3B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AF90D94-FA96-4A2A-9E9D-BCD3A6E2B3B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74B7D655-54A5-4659-A9F8-C25D0F58201F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B7D655-54A5-4659-A9F8-C25D0F58201F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B7D655-54A5-4659-A9F8-C25D0F58201F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B7D655-54A5-4659-A9F8-C25D0F58201F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD62D34E-658B-4BEC-AB67-AFCF858D9322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD62D34E-658B-4BEC-AB67-AFCF858D9322}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD62D34E-658B-4BEC-AB67-AFCF858D9322}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD62D34E-658B-4BEC-AB67-AFCF858D9322}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

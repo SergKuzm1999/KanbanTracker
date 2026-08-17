@@ -1,0 +1,416 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KanbanTracker.UI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="820"
+        x:Class="KanbanTracker.UI.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Kanban Tracker — OOP Practice"
+        Width="1280" Height="820"
+        MinWidth="1000" MinHeight="650"
+        Background="#ECEFF1">
+
+  <Design.DataContext>
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+  <Window.Styles>
+    <Style Selector="Border.column">
+      <Setter Property="Background" Value="#FAFAFA"/>
+      <Setter Property="CornerRadius" Value="10"/>
+      <Setter Property="Padding" Value="10"/>
+      <Setter Property="Margin" Value="5"/>
+      <Setter Property="BoxShadow" Value="0 1 4 0 #15000000"/>
+    </Style>
+    <Style Selector="Border.task-card">
+      <Setter Property="Background" Value="White"/>
+      <Setter Property="CornerRadius" Value="8"/>
+      <Setter Property="Padding" Value="12"/>
+      <Setter Property="Margin" Value="0,0,0,8"/>
+      <Setter Property="BoxShadow" Value="0 1 3 0 #20000000"/>
+    </Style>
+    <Style Selector="TextBlock.column-header">
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="FontSize" Value="14"/>
+      <Setter Property="Margin" Value="2,0,0,10"/>
+    </Style>
+
+    <Style Selector="TextBox.create-input">
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="Foreground" Value="#1A237E"/>
+      <Setter Property="CaretBrush" Value="#1A237E"/>
+      <Setter Property="SelectionBrush" Value="#C5CAE9"/>
+      <Setter Property="BorderBrush" Value="#90A4AE"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="6"/>
+      <Setter Property="Padding" Value="10,8"/>
+      <Setter Property="FontSize" Value="13"/>
+      <Setter Property="MinHeight" Value="38"/>
+    </Style>
+    <Style Selector="TextBox.create-input:focus">
+      <Setter Property="BorderBrush" Value="#5C6BC0"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="Foreground" Value="#1A237E"/>
+    </Style>
+
+    <Style Selector="ComboBox.create-combo">
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="Foreground" Value="#1A237E"/>
+      <Setter Property="BorderBrush" Value="#90A4AE"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="6"/>
+      <Setter Property="Padding" Value="8,6"/>
+      <Setter Property="FontSize" Value="13"/>
+      <Setter Property="MinHeight" Value="38"/>
+      <Setter Property="HorizontalContentAlignment" Value="Left"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="ComboBox.create-combo:pointerover">
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="Foreground" Value="#1A237E"/>
+      <Setter Property="BorderBrush" Value="#5C6BC0"/>
+    </Style>
+    <Style Selector="ComboBox.create-combo /template/ ContentControl#ContentPresenter">
+      <Setter Property="Foreground" Value="#1A237E"/>
+    </Style>
+    <Style Selector="ComboBoxItem">
+      <Setter Property="Foreground" Value="#212121"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="Padding" Value="10,8"/>
+      <Setter Property="FontSize" Value="13"/>
+    </Style>
+    <Style Selector="ComboBoxItem:pointerover">
+      <Setter Property="Background" Value="#E8EAF6"/>
+      <Setter Property="Foreground" Value="#1A237E"/>
+    </Style>
+    <Style Selector="ComboBoxItem:selected">
+      <Setter Property="Background" Value="#C5CAE9"/>
+      <Setter Property="Foreground" Value="#1A237E"/>
+    </Style>
+
+    <Style Selector="Button.move-btn">
+      <Setter Property="Padding" Value="10,5"/>
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Margin" Value="0,0,6,0"/>
+      <Setter Property="CornerRadius" Value="5"/>
+      <Setter Property="Background" Value="#ECEFF1"/>
+      <Setter Property="Foreground" Value="#37474F"/>
+      <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    <Style Selector="Button.move-btn:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="#CFD8DC"/>
+      <Setter Property="Foreground" Value="#263238"/>
+    </Style>
+
+    <Style Selector="Button.next-btn">
+      <Setter Property="Padding" Value="10,5"/>
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Margin" Value="0,0,6,0"/>
+      <Setter Property="CornerRadius" Value="5"/>
+      <Setter Property="Background" Value="#43A047"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    <Style Selector="Button.next-btn:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="#2E7D32"/>
+      <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style Selector="Button.del-btn">
+      <Setter Property="Padding" Value="10,5"/>
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Margin" Value="0,0,6,0"/>
+      <Setter Property="CornerRadius" Value="5"/>
+      <Setter Property="Background" Value="#EF5350"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    <Style Selector="Button.del-btn:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="#C62828"/>
+      <Setter Property="Foreground" Value="White"/>
+    </Style>
+  </Window.Styles>
+
+  <DockPanel>
+    <!-- HEADER -->
+    <Border DockPanel.Dock="Top" Background="#1A237E" Padding="16,14">
+      <StackPanel Spacing="12">
+
+        <StackPanel Orientation="Horizontal" Spacing="10">
+          <TextBlock Text="Kanban Tracker" FontSize="22" FontWeight="Bold" Foreground="White"/>
+          <Border Background="#283593" CornerRadius="4" Padding="8,3" VerticalAlignment="Center">
+            <TextBlock Text="OOP Practice" FontSize="11" Foreground="#C5CAE9"/>
+          </Border>
+        </StackPanel>
+
+        <!-- Create block -->
+        <Border Background="#283593" CornerRadius="10" Padding="14">
+          <StackPanel Spacing="10">
+            <TextBlock Text="Create new task" FontSize="13" FontWeight="SemiBold" Foreground="#9FA8DA"/>
+
+            <Grid ColumnDefinitions="2*,2*,Auto,Auto,Auto">
+              <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                <TextBlock Text="Title *" FontSize="11" Foreground="#C5CAE9" Margin="0,0,0,4"/>
+                <TextBox Classes="create-input"
+                         Text="{Binding NewTaskTitle}"
+                         Watermark="Enter task title..."/>
+              </StackPanel>
+
+              <StackPanel Grid.Column="1" Margin="0,0,10,0">
+                <TextBlock Text="Description" FontSize="11" Foreground="#C5CAE9" Margin="0,0,0,4"/>
+                <TextBox Classes="create-input"
+                         Text="{Binding NewTaskDescription}"
+                         Watermark="Optional description..."/>
+              </StackPanel>
+
+              <StackPanel Grid.Column="2" Margin="0,0,10,0" MinWidth="130">
+                <TextBlock Text="Type" FontSize="11" Foreground="#C5CAE9" Margin="0,0,0,4"/>
+                <ComboBox Classes="create-combo"
+                          ItemsSource="{Binding TaskTypes}"
+                          SelectedItem="{Binding SelectedTaskType}"
+                          HorizontalAlignment="Stretch"/>
+              </StackPanel>
+
+              <StackPanel Grid.Column="3" Margin="0,0,10,0" MinWidth="120">
+                <TextBlock Text="Priority" FontSize="11" Foreground="#C5CAE9" Margin="0,0,0,4"/>
+                <ComboBox Classes="create-combo"
+                          ItemsSource="{Binding Priorities}"
+                          SelectedItem="{Binding SelectedPriority}"
+                          HorizontalAlignment="Stretch"/>
+              </StackPanel>
+
+              <StackPanel Grid.Column="4" VerticalAlignment="Bottom">
+                <Button Content="+ Add Task"
+                        Command="{Binding AddTaskCommand}"
+                        Background="#00C853"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        FontSize="13"
+                        Padding="18,10"
+                        CornerRadius="6"
+                        BorderThickness="0"
+                        MinHeight="38"/>
+              </StackPanel>
+            </Grid>
+          </StackPanel>
+        </Border>
+
+        <!-- Search row -->
+        <Grid ColumnDefinitions="*,Auto">
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <TextBox Classes="create-input"
+                     Text="{Binding SearchQuery}"
+                     Watermark="Search by title, description or type..."
+                     Width="300"/>
+            <Button Content="Search" Command="{Binding SearchCommand}"
+                    Background="#5C6BC0" Foreground="White"
+                    Padding="14,8" CornerRadius="6" BorderThickness="0" FontWeight="SemiBold"/>
+            <Button Content="Clear" Command="{Binding ClearSearchCommand}"
+                    Background="#546E7A" Foreground="White"
+                    Padding="14,8" CornerRadius="6" BorderThickness="0"/>
+          </StackPanel>
+
+          <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+            <ComboBox Classes="create-combo"
+                      ItemsSource="{Binding SortOptions}"
+                      SelectedItem="{Binding SelectedSort}"
+                      Width="140"/>
+            <Button Content="Sort" Command="{Binding ApplySortCommand}"
+                    Background="#546E7A" Foreground="White"
+                    Padding="12,8" CornerRadius="6" BorderThickness="0"/>
+            <Button Content="Save" Command="{Binding SaveBoardCommand}"
+                    Background="#00897B" Foreground="White"
+                    Padding="12,8" CornerRadius="6" BorderThickness="0" FontWeight="SemiBold"/>
+            <Button Content="Refresh" Command="{Binding RefreshCommand}"
+                    Background="#546E7A" Foreground="White"
+                    Padding="12,8" CornerRadius="6" BorderThickness="0"/>
+          </StackPanel>
+        </Grid>
+      </StackPanel>
+    </Border>
+
+    <!-- STATUS BAR -->
+    <Border DockPanel.Dock="Bottom" Background="#CFD8DC" Padding="14,8">
+      <Grid ColumnDefinitions="*,Auto">
+        <TextBlock Text="{Binding StatusMessage}" VerticalAlignment="Center" FontSize="13" Foreground="#37474F"/>
+        <TextBlock Grid.Column="1" Text="{Binding StatsText}" VerticalAlignment="Center" FontSize="12" Foreground="#546E7A"/>
+      </Grid>
+    </Border>
+
+    <!-- COLUMNS -->
+    <Grid ColumnDefinitions="*,*,*,*,*" Margin="6">
+
+      <!-- To Do -->
+      <Border Grid.Column="0" Classes="column">
+        <DockPanel>
+          <TextBlock DockPanel.Dock="Top" Classes="column-header" Text="To Do" Foreground="#5C6BC0"/>
+          <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding ToDoTasks}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:TaskItemViewModel">
+                  <Border Classes="task-card">
+                    <StackPanel Spacing="5">
+                      <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" TextWrapping="Wrap" Foreground="#212121"/>
+                        <Border Grid.Column="1" Background="{Binding PriorityColor}" CornerRadius="4" Padding="7,2" Margin="6,0,0,0">
+                          <TextBlock Text="{Binding Priority}" FontSize="10" Foreground="White" FontWeight="SemiBold"/>
+                        </Border>
+                      </Grid>
+                      <TextBlock Text="{Binding Type}" FontSize="11" Foreground="#90A4AE"/>
+                      <TextBlock Text="{Binding Description}" FontSize="12" Foreground="#607D8B"
+                                 TextWrapping="Wrap" MaxHeight="48" TextTrimming="CharacterEllipsis"/>
+                      <TextBlock Text="{Binding CreatedAt, StringFormat='Created: {0}'}" FontSize="11" Foreground="#90A4AE" Margin="0,2,0,0"/>
+                      <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,6,0,0">
+                        <Button Content="Next →" Classes="next-btn" Command="{Binding MoveNextCommand}"/>
+                        <Button Content="Del" Classes="del-btn" Command="{Binding DeleteCommand}"/>
+                      </StackPanel>
+                    </StackPanel>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </ScrollViewer>
+        </DockPanel>
+      </Border>
+
+      <!-- In Progress -->
+      <Border Grid.Column="1" Classes="column">
+        <DockPanel>
+          <TextBlock DockPanel.Dock="Top" Classes="column-header" Text="In Progress" Foreground="#FB8C00"/>
+          <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding InProgressTasks}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:TaskItemViewModel">
+                  <Border Classes="task-card">
+                    <StackPanel Spacing="5">
+                      <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" TextWrapping="Wrap" Foreground="#212121"/>
+                        <Border Grid.Column="1" Background="{Binding PriorityColor}" CornerRadius="4" Padding="7,2" Margin="6,0,0,0">
+                          <TextBlock Text="{Binding Priority}" FontSize="10" Foreground="White" FontWeight="SemiBold"/>
+                        </Border>
+                      </Grid>
+                      <TextBlock Text="{Binding Type}" FontSize="11" Foreground="#90A4AE"/>
+                      <TextBlock Text="{Binding Description}" FontSize="12" Foreground="#607D8B"
+                                 TextWrapping="Wrap" MaxHeight="48" TextTrimming="CharacterEllipsis"/>
+                      <TextBlock Text="{Binding CreatedAt, StringFormat='Created: {0}'}" FontSize="11" Foreground="#90A4AE" Margin="0,2,0,0"/>
+                      <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,6,0,0">
+                        <Button Content="← Prev" Classes="move-btn" Command="{Binding MovePreviousCommand}"/>
+                        <Button Content="Next →" Classes="next-btn" Command="{Binding MoveNextCommand}"/>
+                        <Button Content="Del" Classes="del-btn" Command="{Binding DeleteCommand}"/>
+                      </StackPanel>
+                    </StackPanel>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </ScrollViewer>
+        </DockPanel>
+      </Border>
+
+      <!-- Review -->
+      <Border Grid.Column="2" Classes="column">
+        <DockPanel>
+          <TextBlock DockPanel.Dock="Top" Classes="column-header" Text="Review" Foreground="#8E24AA"/>
+          <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding ReviewTasks}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:TaskItemViewModel">
+                  <Border Classes="task-card">
+                    <StackPanel Spacing="5">
+                      <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" TextWrapping="Wrap" Foreground="#212121"/>
+                        <Border Grid.Column="1" Background="{Binding PriorityColor}" CornerRadius="4" Padding="7,2" Margin="6,0,0,0">
+                          <TextBlock Text="{Binding Priority}" FontSize="10" Foreground="White" FontWeight="SemiBold"/>
+                        </Border>
+                      </Grid>
+                      <TextBlock Text="{Binding Type}" FontSize="11" Foreground="#90A4AE"/>
+                      <TextBlock Text="{Binding Description}" FontSize="12" Foreground="#607D8B"
+                                 TextWrapping="Wrap" MaxHeight="48" TextTrimming="CharacterEllipsis"/>
+                      <TextBlock Text="{Binding CreatedAt, StringFormat='Created: {0}'}" FontSize="11" Foreground="#90A4AE" Margin="0,2,0,0"/>
+                      <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,6,0,0">
+                        <Button Content="← Prev" Classes="move-btn" Command="{Binding MovePreviousCommand}"/>
+                        <Button Content="Next →" Classes="next-btn" Command="{Binding MoveNextCommand}"/>
+                        <Button Content="Del" Classes="del-btn" Command="{Binding DeleteCommand}"/>
+                      </StackPanel>
+                    </StackPanel>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </ScrollViewer>
+        </DockPanel>
+      </Border>
+
+      <!-- Done -->
+      <Border Grid.Column="3" Classes="column">
+        <DockPanel>
+          <TextBlock DockPanel.Dock="Top" Classes="column-header" Text="Done" Foreground="#43A047"/>
+          <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding DoneTasks}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:TaskItemViewModel">
+                  <Border Classes="task-card">
+                    <StackPanel Spacing="5">
+                      <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" TextWrapping="Wrap" TextDecorations="Strikethrough" Foreground="#212121"/>
+                        <Border Grid.Column="1" Background="{Binding PriorityColor}" CornerRadius="4" Padding="7,2" Margin="6,0,0,0">
+                          <TextBlock Text="{Binding Priority}" FontSize="10" Foreground="White" FontWeight="SemiBold"/>
+                        </Border>
+                      </Grid>
+                      <TextBlock Text="{Binding Type}" FontSize="11" Foreground="#90A4AE"/>
+                      <TextBlock Text="{Binding Description}" FontSize="12" Foreground="#607D8B"
+                                 TextWrapping="Wrap" MaxHeight="48" TextTrimming="CharacterEllipsis"/>
+                      <TextBlock Text="{Binding CreatedAt, StringFormat='Created: {0}'}" FontSize="11" Foreground="#90A4AE" Margin="0,2,0,0"/>
+                      <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,6,0,0">
+                        <Button Content="← Prev" Classes="move-btn" Command="{Binding MovePreviousCommand}"/>
+                        <Button Content="Del" Classes="del-btn" Command="{Binding DeleteCommand}"/>
+                      </StackPanel>
+                    </StackPanel>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </ScrollViewer>
+        </DockPanel>
+      </Border>
+
+      <!-- Blocked -->
+      <Border Grid.Column="4" Classes="column">
+        <DockPanel>
+          <TextBlock DockPanel.Dock="Top" Classes="column-header" Text="Blocked" Foreground="#E53935"/>
+          <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding BlockedTasks}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:TaskItemViewModel">
+                  <Border Classes="task-card">
+                    <StackPanel Spacing="5">
+                      <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" TextWrapping="Wrap" Foreground="#212121"/>
+                        <Border Grid.Column="1" Background="{Binding PriorityColor}" CornerRadius="4" Padding="7,2" Margin="6,0,0,0">
+                          <TextBlock Text="{Binding Priority}" FontSize="10" Foreground="White" FontWeight="SemiBold"/>
+                        </Border>
+                      </Grid>
+                      <TextBlock Text="{Binding Type}" FontSize="11" Foreground="#90A4AE"/>
+                      <TextBlock Text="{Binding Description}" FontSize="12" Foreground="#607D8B"
+                                 TextWrapping="Wrap" MaxHeight="48" TextTrimming="CharacterEllipsis"/>
+                      <TextBlock Text="{Binding CreatedAt, StringFormat='Created: {0}'}" FontSize="11" Foreground="#90A4AE" Margin="0,2,0,0"/>
+                      <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,6,0,0">
+                        <Button Content="Next →" Classes="next-btn" Command="{Binding MoveNextCommand}"/>
+                        <Button Content="Del" Classes="del-btn" Command="{Binding DeleteCommand}"/>
+                      </StackPanel>
+                    </StackPanel>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </ScrollViewer>
+        </DockPanel>
+      </Border>
+    </Grid>
+  </DockPanel>
+</Window>
