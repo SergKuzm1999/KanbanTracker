@@ -1,7 +1,7 @@
 namespace KanbanTracker.Application.Services;
 
 /// <summary>
-/// Механізм відновлення з експоненційною затримкою (самостійна робота 8).
+/// Механізм відновлення з експоненційною затримкою .
 /// </summary>
 public static class RetryPolicy
 {

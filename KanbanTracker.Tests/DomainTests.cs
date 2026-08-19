@@ -64,7 +64,9 @@ public class DomainTests
         var parent = new TaskItem("Parent");
         var child1 = new TaskItem("Child1");
         var child2 = new TaskItem("Child2");
-        child2.TransitionTo(KanbanTaskStatus.Done);
+        child2.MoveNext(); // ToDo → InProgress
+        child2.MoveNext(); // InProgress → Review
+        child2.MoveNext(); // Review → Done
 
         parent.Add(child1);
         parent.Add(child2);
