@@ -346,6 +346,7 @@ dotnet test
 | Зберегти | **Save** → `board.json` |
 
 На картці відображаються: назва, тип, пріоритет, опис, **дата створення**.
+<img width="1919" height="1032" alt="image" src="https://github.com/user-attachments/assets/f190b8ec-3a7c-4824-b869-918dff7bffbf" />
 
 ---
 
